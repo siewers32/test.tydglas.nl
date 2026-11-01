@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parkinson Café Dronten - Samen sterk met Parkinson</title>
+
+  <!-- Bootstrap 5 CSS via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+  <!-- Font Awesome for Accessible Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font: Libre Franklin -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* WCAG 2.1 AAA Accessibility Guidelines for Seniors */
+    :root {
+      --bg-color: #F9F9FB;
+      --text-color: #1A1A1A;
+      --brand-primary: #1D3557;
+      --brand-hover: #112239;
+      --brand-accent: #2A5A82;
+      --alert-color: #941914;
+      --card-bg: #FFFFFF;
+      --border-color: #D1D5DB;
+    }
+
+    body {
+      font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1.125rem; /* 18px standard base size */
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Typography Accessibility Controls */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--brand-primary);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2.25rem !important; } /* 36px */
+    h2 { font-size: 1.75rem !important; } /* 28px */
+    h3 { font-size: 1.375rem !important; } /* 22px */
+
+    p, li {
+      color: var(--text-color);
+      max-width: 75ch; /* Comfortable line length */
+    }
+
+    /* High contrast navbar */
+    .navbar {
+      background-color: #FFFFFF;
+      border-bottom: 3px solid var(--brand-primary);
+      padding: 0.75rem 0;
+    }
+
+    .nav-link {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--brand-primary) !important;
+      padding: 0.6rem 1.1rem !important;
+      border-radius: 6px;
+      margin: 0 2px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link:focus, .nav-link.active {
+      background-color: #EBF2FA !important;
+      color: var(--brand-primary) !important;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* Custom Accessible Buttons (Min touch target height 48px) */
+    .btn-brand {
+      background-color: var(--brand-primary);
+      color: #FFFFFF !important;
+      font-size: 1.125rem;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      border: 2px solid var(--brand-primary);
+      min-height: 48px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-brand:hover, .btn-brand:focus {
+      background-color: var(--brand-hover);
+      border-color: var(--brand-hover);
+      text-decoration: underline;
+    }
+
+    .btn-brand-outlined {
+      background-color: transparent;
+      color: var(--brand-primary) !important;
+      font-size: 1.125rem;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      border: 2px solid var(--brand-primary);
+      min-height: 48px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-brand-outlined:hover, .btn-brand-outlined:focus {
+      background-color: var(--brand-primary);
+      color: #FFFFFF !important;
+    }
+
+    /* Cards Styling */
+    .card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      height: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-clickable {
+      cursor: pointer;
+    }
+
+    .card-clickable:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      border-color: var(--brand-primary);
+    }
+
+    .card-title {
+      color: var(--brand-primary);
+      font-size: 1.375rem;
+      font-weight: 700;
+    }
+
+    .quote-box {
+      background-color: #EBF2FA;
+      border-left: 6px solid var(--brand-primary);
+      padding: 1.5rem 2rem;
+      border-radius: 0 12px 12px 0;
+      margin: 2rem 0;
+      font-size: 1.375rem;
+      font-style: italic;
+      color: #1D3557;
+      font-weight: 600;
+    }
+
+    /* Links High Contrast */
+    a.accessible-link {
+      color: #004499;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a.accessible-link:hover, a.accessible-link:focus {
+      color: #002255;
+      background-color: #EBF2FA;
+    }
+
+    /* Footer styling */
+    footer.footer-dark {
+      background-color: #111827;
+      color: #F9FAFB;
+      margin-top: auto;
+      padding: 3rem 0 1.5rem 0;
+    }
+
+    footer.footer-dark h3, footer.footer-dark strong, footer.footer-dark p, footer.footer-dark label {
+      color: #F9FAFB !important;
+    }
+
+    footer.footer-dark a {
+      color: #93C5FD;
+      text-decoration: underline;
+    }
+
+    footer.footer-dark a:hover {
+      color: #FFFFFF;
+    }
+
+    .form-control-accessible {
+      font-size: 1.125rem;
+      padding: 0.75rem 1rem;
+      border: 2px solid #4B5563;
+      border-radius: 6px;
+    }
+
+    .form-control-accessible:focus {
+      border-color: #93C5FD;
+      box-shadow: 0 0 0 0.25rem rgba(147, 197, 253, 0.5);
+    }
+
+    .social-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #2D2D40;
+      color: #FFFFFF !important;
+      font-size: 1.25rem;
+      margin-right: 0.5rem;
+      text-decoration: none;
+    }
+
+    .social-icon-btn:hover {
+      background-color: var(--brand-accent);
+    }
+
+    /* Focus outline for keyboard navigation accessibility */
+    *:focus-visible {
+      outline: 3px solid #0055FF !important;
+      outline-offset: 2px !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <nav class="navbar navbar-expand-lg" aria-label="Hoofdnavigatie">
+      <div class="container">
+        <!-- Logo SVG Integration -->
+        <a class="navbar-brand me-4" href="#home" onclick="switchTab('home')" title="Ga naar de homepage van Parkinson Café Dronten">
+          <svg version="1.1" id="Laag_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 844.9 218.2" style="enable-background:new 0 0 844.9 218.2; max-height: 55px; width: auto;" xml:space="preserve" aria-label="Logo Parkinson Café Dronten">
+            <style type="text/css">
+              .st0{fill:#2D2D40;}
+            </style>
+            <path class="st0" d="M56.9,93.7c5.1,2.4,16.3,8,29.6,12.6c-5.6,3.9-12.9,10.5-13.2,11c-0.6,0.9-1.1,2.1-0.2,3.1
+              c0.9,0.9,2.2,1,3.3,0.6c7.3-2.3,23.8-9.6,25.3-16.6c1.4-7-7.9-21.2-12.7-27.4c-0.5-0.6-1.9-1.7-3.1-1.2c-1.2,0.5-1.3,2.3-1.2,3.1
+              c0.7,3.8,2.6,12.3,5,16.6c-11.2-3.5-24.1-6.2-31.3-6.8c-1.7-0.1-2.8,0.2-3.2,1.5C54.7,91.7,55.1,92.9,56.9,93.7z"/>
+            <path class="st0" d="M163.6,122.3c-4.9-2.8-15.7-9.1-28.7-14.6c5.9-3.5,13.6-9.6,14-10.1c0.7-0.8,1.2-2,0.4-3
+              c-0.8-1-2.1-1.1-3.3-0.8c-7.4,1.8-24.4,7.8-26.4,14.8c-1.9,6.9,6.4,21.7,10.8,28.2c0.5,0.6,1.8,1.8,3,1.5c1.3-0.4,1.5-2.2,1.4-3
+              c-0.4-3.8-1.7-12.5-3.8-16.9c10.9,4.3,23.6,7.9,30.7,9c1.7,0.3,2.9,0,3.3-1.3C165.7,124.4,165.4,123.3,163.6,122.3z"/>
+            <path class="st0" d="M115.6,99.9c2.3-5.1,7.7-16.4,12.1-29.8c4,5.6,10.7,12.7,11.3,13.1c0.9,0.6,2.1,1,3.1,0.1
+              c0.9-0.9,0.9-2.2,0.5-3.3c-2.4-7.2-9.9-23.7-17-25c-7.1-1.3-21.1,8.2-27.2,13.2c-0.6,0.5-1.7,1.9-1.2,3.1c0.5,1.2,2.3,1.3,3.1,1.2
+              c3.7-0.7,12.3-2.8,16.5-5.3c-3.4,11.2-5.9,24.2-6.3,31.4c-0.1,1.7,0.3,2.8,1.5,3.2C113.7,102.2,114.8,101.8,115.6,99.9z"/>
+            <path class="st0" d="M104.7,119c-2.3,5.1-7.7,16.4-12.1,29.8c-4-5.6-10.7-12.7-11.3-13.1c-0.9-0.6-2.1-1-3.1-0.1
+              c-0.9,0.9-0.9,2.2-0.5,3.3c2.4,7.2,9.9,23.7,17,25c7.1,1.3,21.1-8.2,27.2-13.2c0.6-0.5,1.7-1.9,1.2-3.1c-0.5-1.2-2.3-1.3-3.1-1.2
+              c-3.7,0.7-12.3,2.8-16.5,5.3c3.4-11.2,5.9-24.2,6.3-31.4c0.1-1.7-0.3-2.8-1.5-3.2C106.7,116.8,105.5,117.2,104.7,119z"/>
+            <path class="st0" d="M764.5,63.9v71.9h-11.1V71.7c0-4.3,3.5-7.8,7.8-7.8H764.5z"/>
+            <path class="st0" d="M717.3,81.4c4.2,0,8,0.9,11.3,2.6c3.4,1.7,6,4.3,7.9,7.8c1.9,3.4,2.8,7.6,2.8,12.4v31.6h-11v-29.9
+              c0-4.8-1.2-8.5-3.6-11c-2.4-2.6-5.7-3.9-9.8-3.9c-4.1,0-7.5,1.3-9.9,3.9c-2.4,2.5-3.6,6.2-3.6,11v29.9h-11.1V82.2h11.1v6.1
+              c1.8-2.2,4.1-3.9,6.9-5.1C711.1,82,714.1,81.4,717.3,81.4z"/>
+            <path class="st0" d="M671.3,136.5c-2,0-3.7-0.7-5.1-2c-1.4-1.4-2-3-2-5.1c0-2,0.7-3.7,2-5.1c1.4-1.4,3-2,5.1-2c1.9,0,3.6,0.7,5,2
+              c1.4,1.4,2,3,2,5.1c0,2-0.7,3.7-2,5.1C674.9,135.8,673.3,136.5,671.3,136.5z"/>
+            <path class="st0" d="M630.7,81.4c4.2,0,8,0.9,11.3,2.6c3.4,1.7,6,4.3,7.9,7.8c1.9,3.4,2.8,7.6,2.8,12.4v31.6h-11v-29.9
+              c0-4.8-1.2-8.5-3.6-11c-2.4-2.6-5.7-3.9-9.8-3.9c-4.1,0-7.4,1.3-9.9,3.9c-2.4,2.5-3.6,6.2-3.6,11v29.9h-11.1V82.2h11.1v6.1
+              c1.8-2.2,4.1-3.9,6.9-5.1C624.6,82,627.6,81.4,630.7,81.4z"/>
+            <path class="st0" d="M565,136.7c-5.1,0-9.6-1.1-13.7-3.4c-4.1-2.3-7.3-5.6-9.6-9.7c-2.3-4.2-3.5-9.1-3.5-14.6
+              c0-5.4,1.2-10.3,3.6-14.5c2.4-4.2,5.7-7.4,9.8-9.7c4.1-2.3,8.8-3.4,13.9-3.4c5.1,0,9.7,1.1,13.9,3.4c4.1,2.3,7.4,5.5,9.8,9.7
+              c2.4,4.2,3.6,9,3.6,14.5c0,5.4-1.2,10.3-3.7,14.5c-2.5,4.2-5.8,7.5-10.1,9.8C574.8,135.5,570.1,136.7,565,136.7z M565,127
+              c2.9,0,5.5-0.7,8-2c2.5-1.4,4.6-3.4,6.1-6.1c1.6-2.7,2.3-6,2.3-9.9c0-3.9-0.7-7.2-2.2-9.8c-1.5-2.7-3.5-4.8-5.9-6.1
+              c-2.5-1.4-5.1-2-8-2c-2.8,0-5.5,0.7-8,2c-2.4,1.4-4.3,3.4-5.7,6.1c-1.4,2.7-2.1,5.9-2.1,9.8c0,5.8,1.5,10.2,4.4,13.4
+              C556.8,125.5,560.5,127,565,127z"/>
+            <path class="st0" d="M509.3,136.7c-4.2,0-8-0.7-11.4-2.2c-3.3-1.6-5.9-3.6-7.9-6.2c-1.9-2.7-3-5.6-3.1-8.8h11.5
+              c0.2,2.3,1.3,4.2,3.2,5.7c2,1.5,4.5,2.2,7.5,2.2c3.1,0,5.5-0.6,7.2-1.7c1.7-1.2,2.6-2.8,2.6-4.7c0-2-1-3.5-2.9-4.5
+              c-1.9-1-4.9-2-9-3.2c-4-1.1-7.3-2.2-9.8-3.2c-2.5-1-4.7-2.6-6.6-4.8c-1.8-2.1-2.7-5-2.7-8.5c0-2.9,0.8-5.4,2.5-7.8
+              c1.7-2.4,4.1-4.3,7.2-5.6c3.2-1.4,6.8-2,10.9-2c6.1,0,11,1.6,14.7,4.7c3.8,3,5.8,7.2,6,12.5H518c-0.2-2.4-1.2-4.3-2.9-5.7
+              c-1.7-1.4-4.1-2.1-7.1-2.1c-2.9,0-5.2,0.6-6.7,1.7c-1.6,1.1-2.3,2.6-2.3,4.4c0,1.4,0.5,2.6,1.6,3.6c1,1,2.3,1.7,3.8,2.3
+              c1.5,0.5,3.7,1.2,6.6,2c3.9,1,7.1,2.1,9.5,3.2c2.5,1,4.7,2.6,6.5,4.7c1.8,2.1,2.8,4.8,2.8,8.3c0,3-0.8,5.8-2.5,8.2
+              c-1.7,2.4-4.1,4.3-7.2,5.6C517,136,513.4,136.7,509.3,136.7z"/>
+            <path class="st0" d="M455.2,81.4c4.2,0,8,0.9,11.3,2.6c3.4,1.7,6,4.3,7.9,7.8c1.9,3.4,2.8,7.6,2.8,12.4v31.6h-11v-29.9
+              c0-4.8-1.2-8.5-3.6-11c-2.4-2.6-5.7-3.9-9.8-3.9c-4.1,0-7.5,1.3-9.9,3.9c-2.4,2.5-3.6,6.2-3.6,11v29.9h-11.1V82.2h11.1v6.1
+              c1.8-2.2,4.1-3.9,6.9-5.1C449,82,452,81.4,455.2,81.4z"/>
+            <path class="st0" d="M408.2,75.1c-2,0-3.7-0.7-5.1-2c-1.4-1.4-2-3-2-5.1c0-2,0.7-3.7,2-5.1c1.4-1.4,3-2,5.1-2c1.9,0,3.6,0.7,5,2
+              c1.4,1.4,2,3,2,5.1c0,2-0.7,3.7-2,5.1C411.8,74.5,410.1,75.1,408.2,75.1z M413.6,82.2v53.5h-11.1V90.1c0-4.3,3.5-7.8,7.8-7.8H413.6z
+              "/>
+            <path class="st0" d="M369.9,109.1l24.7,26.7H385c-3.4,0-6.7-1.5-8.9-4.1l-16.3-18.9v23h-11.1V63.9h11.1v41.8l15.9-19.2
+              c2.2-2.7,5.5-4.2,9-4.2h9.8L369.9,109.1z"/>
+            <path class="st0" d="M322.5,90c1.6-2.7,3.8-4.8,6.4-6.3c2.7-1.6,5.9-2.3,9.6-2.3v11.5h-2.8c-4.3,0-7.6,1.1-9.9,3.3
+              c-2.2,2.2-3.3,6-3.3,11.5v28.2h-11.1V82.2h11.1V90z"/>
+            <path class="st0" d="M241.9,108.8c0-5.4,1.1-10.1,3.3-14.3c2.3-4.1,5.3-7.4,9.1-9.6c3.9-2.3,8.2-3.5,12.8-3.5c4.2,0,7.9,0.8,11,2.5
+              c3.2,1.6,5.7,3.7,7.6,6.1v-7.8h11.2v53.5h-3.3c-4.3,0-7.8-3.5-7.8-7.8v-0.1c-1.9,2.5-4.4,4.6-7.7,6.3c-3.2,1.7-6.9,2.5-11.1,2.5
+              c-4.6,0-8.8-1.2-12.6-3.5c-3.8-2.4-6.9-5.7-9.1-9.9C243,119,241.9,114.1,241.9,108.8z M285.7,109c0-3.7-0.8-6.9-2.3-9.6
+              c-1.5-2.7-3.5-4.8-5.9-6.2c-2.5-1.4-5.1-2.1-8-2.1c-2.9,0-5.5,0.7-8,2.1c-2.5,1.4-4.5,3.4-6,6.1c-1.5,2.7-2.2,5.8-2.2,9.5
+              c0,3.7,0.7,6.9,2.2,9.7c1.6,2.8,3.6,4.9,6,6.4c2.5,1.4,5.2,2.1,8,2.1c2.9,0,5.5-0.7,8-2.1c2.5-1.4,4.4-3.5,5.9-6.2
+              C284.9,115.9,285.7,112.7,285.7,109z"/>
+            <path class="st0" d="M239.2,88.4c0,3.4-0.8,6.7-2.4,9.7c-1.6,3-4.2,5.5-7.8,7.5c-3.6,1.9-8.1,2.8-13.7,2.8H203v27.4H192V68.3h23.3
+              c5.2,0,9.6,0.9,13.1,2.7c3.6,1.7,6.3,4.1,8.1,7.2C238.3,81.2,239.2,84.6,239.2,88.4z M215.3,99.3c4.2,0,7.4-0.9,9.4-2.8
+              c2.1-1.9,3.1-4.7,3.1-8.2c0-7.4-4.2-11.1-12.5-11.1H203v22.1H215.3z"/>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Navigatie in/uitklappen">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Links & Social Buttons -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link active" id="nav-home" href="#home" onclick="switchTab('home')">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-over-ons" href="#over-ons" onclick="switchTab('over-ons')">Over ons</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-patienten" href="#patienten" onclick="switchTab('patienten')">Voor patiënten en naasten</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-informatie" href="#informatie" onclick="switchTab('informatie')">Informatie en media</a>
+            </li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex">
+              <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon-btn" title="Bezoek onze Facebook pagina" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon-btn" title="Volg ons op Instagram" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow-1">
+
+    <!-- 1. HOMEPAGE TAB -->
+    <section id="tab-home" class="tab-content">
+      <!-- Hero Section -->
+      <section class="py-5" style="background-color: #EBF2FA; border-bottom: 1px solid var(--border-color);">
+        <div class="container py-4">
+          <div class="row align-items-center">
+            <div class="col-lg-10 col-xl-9">
+              <h1 class="display-5 mb-3">Welkom bij het Parkinson Café in Dronten.</h1>
+              <p class="fs-3 mb-4" style="color: var(--brand-accent); font-weight: 600;">
+                Samen sterk met Parkinson in de gemeente Dronten
+              </p>
+              <div class="d-flex flex-wrap gap-3">
+                <button class="btn btn-brand" onclick="openContactModal()">
+                  <i class="fas fa-hand-holding-heart me-2"></i> Word vrijwilliger
+                </button>
+                <button class="btn btn-brand-outlined" onclick="openDonateModal()">
+                  <i class="fas fa-donate me-2"></i> Doneer een bijdrage
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 Clickable Cards Section -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row g-4">
+            
+            <!-- Card 1 -->
+            <div class="col-md-4">
+              <div class="card card-clickable text-center p-4" onclick="switchTab('informatie')">
+                <div class="pt-3 pb-2">
+                  <i class="fas fa-book-medical fa-3x" style="color: var(--brand-primary);"></i>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-title h4 mb-3">Informatie over Parkinson</h2>
+                  <p class="card-text">Lees verslagen, bekijk landelijke links en ontdek betrouwbare informatie over de ziekte.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4">
+              <div class="card card-clickable text-center p-4" onclick="switchTab('patienten')">
+                <div class="pt-3 pb-2">
+                  <i class="fas fa-hands-helping fa-3x" style="color: var(--brand-primary);"></i>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-title h4 mb-3">Voor patiënten en naasten</h2>
+                  <p class="card-text">Ontdek koffiemomenten, lotgenotencontact en lokaal aanbod speciaal voor u en uw mantelzorger.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4">
+              <div class="card card-clickable text-center p-4" onclick="switchTab('patienten')">
+                <div class="pt-3 pb-2">
+                  <i class="fas fa-map-marker-alt fa-3x" style="color: var(--brand-primary);"></i>
+                </div>
+                <div class="card-body">
+                  <h2 class="card-title h4 mb-3">Voorzieningen in Dronten</h2>
+                  <p class="card-text">Vind de juiste wegwijzer in de zorg, Wmo-loket, Parkinson-boksen en lokale fysiotherapie.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro Content Section -->
+      <section class="pb-5">
+        <div class="container">
+          <div class="bg-white p-4 p-md-5 rounded-3 border border-2">
+            <p class="fs-5">
+              Parkinson Cafés zijn laagdrempelige ontmoetingsplekken in Nederland voor mensen met de ziekte van Parkinson, mensen met andere vormen van parkinsonisme, hun naasten en mantelzorgers. Kenmerk van het parkinson café is dat alles met vrijwilligers gebeurt en met de ondersteuning van het landelijk platform <a href="https://parkinson.nl" target="_blank" rel="noopener" class="accessible-link">parkinson.nl</a>. We bieden een ontspannen sfeer met boeiende sprekers en er is ruimte om ervaringen uit te wisselen en informatie te delen over de ziekte. Dit initiatief is in Dronten tot stand gekomen door Platform Senioren Dronten.
+            </p>
+            <p class="fs-5">
+              Op deze website vind je o.a. het programma van bijeenkomsten en je vind verslagen van onze afdeling. We verwijzen naar mogelijkheden om te sporten en we geven je informatie over zorgverlening en hulpmiddelen.
+            </p>
+
+            <hr class="my-5" style="border-top: 2px solid var(--border-color); opacity: 1;">
+
+            <h2 id="heb-jij-te-maken-met-parkinson?" class="h2 mb-3">Heb jij te maken met Parkinson?</h2>
+            <p class="fs-5 mb-0">
+              Heb je zelf de ziekte van Parkinson, ben je mantelzorger of gewoon geïnteresseerd? In het Parkinson Café is er plek voor iedereen die op 1 of andere manier met Parkinson te maken heeft.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 2. OVER ONS TAB -->
+    <section id="tab-over-ons" class="tab-content d-none">
+      <section class="py-4" style="background-color: #EBF2FA; border-bottom: 1px solid var(--border-color);">
+        <div class="container py-3">
+          <h1 class="mb-2">Word Medepionier</h1>
+          <p class="fs-3 mb-0" style="color: var(--brand-accent); font-weight: 600;">Bouw mee aan ons café als vrijwilliger!</p>
+        </div>
+      </section>
+
+      <section class="py-5">
+        <div class="container">
+          <!-- Quote -->
+          <div class="quote-box">
+            <i class="fas fa-quote-left me-3"></i>
+            Een dorp dat goed en veilig is voor een kwetsbare inwoner, is een paradijs voor alle generaties.
+          </div>
+
+          <div class="bg-white p-4 p-md-5 rounded-3 border border-2 mb-5">
+            <p class="fs-5">
+              Draag jij het onderwerp Parkinson een warm hart toe? Ben je ervaringsdeskundige, mantelzorger, zorgprofessional of gewoon een betrokken dorpsgenoot die zijn of haar talenten wil inzetten? Dan zoeken we jou!
+            </p>
+
+            <h2 class="h3 mt-4 mb-3">Concreet zijn we op zoek naar:</h2>
+            <ul class="fs-5 mb-4" style="padding-left: 1.5rem;">
+              <li class="mb-3">
+                <strong>Ervaringsdeskundigen & Naasten:</strong> Die willen meedenken over de behoeften in Dronten, Swifterbant en Biddinghuizen.
+              </li>
+              <li class="mb-3">
+                <strong>Zorg- en welzijnsprofessionals:</strong> Fysiotherapeuten, ergotherapeuten, wijkverpleegkundigen en Wmo-consulenten die hun krachten willen bundelen.
+              </li>
+              <li class="mb-3">
+                <strong>Organisatorische Pioniers:</strong> Mensen die willen helpen bij het opzetten van bijeenkomsten, het beheren van deze website of het onderhouden van contacten met de gemeente en het Platform Senioren Dronten (PSD).
+              </li>
+            </ul>
+
+            <div class="mt-4">
+              <button class="btn btn-brand" onclick="openContactModal()">
+                <i class="fas fa-paper-plane me-2"></i> Meld je aan als Pionier
+              </button>
+            </div>
+          </div>
+
+          <!-- Team Section -->
+          <h2 id="wij-worden-je-collega’s" class="h2 mb-3">Wij worden je collega’s</h2>
+          <p class="fs-5 mb-4">Maak kennis met het toegewijde team van vrijwilligers achter het Parkinson Café Dronten:</p>
+
+          <div class="row g-4 mb-5">
+            <!-- Team Member 1 -->
+            <div class="col-md-4">
+              <div class="card p-3">
+                <div class="card-body text-center">
+                  <div class="mb-3">
+                    <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                  </div>
+                  <h3 class="card-title h4 mb-1">Margreet de Vries</h3>
+                  <p class="fw-bold mb-3" style="color: var(--brand-accent);">Coördinator & Ervaringsdeskundige</p>
+                  <p class="card-text fs-6">
+                    "Als partner van iemand met Parkinson weet ik hoe belangrijk het is om een luisterend oor en de juiste ondersteuning dicht bij huis te vinden."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="col-md-4">
+              <div class="card p-3">
+                <div class="card-body text-center">
+                  <div class="mb-3">
+                    <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                  </div>
+                  <h3 class="card-title h4 mb-1">Jan Willem Bakker</h3>
+                  <p class="fw-bold mb-3" style="color: var(--brand-accent);">Organisatie & Bijeenkomsten</p>
+                  <p class="card-text fs-6">
+                    "Ik zet mij graag in voor Dronten om waardevolle ontmoetingsdagen te organiseren waar participatie en plezier vooropstaan."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="col-md-4">
+              <div class="card p-3">
+                <div class="card-body text-center">
+                  <div class="mb-3">
+                    <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                  </div>
+                  <h3 class="card-title h4 mb-1">Anja van Dijk</h3>
+                  <p class="fw-bold mb-3" style="color: var(--brand-accent);">Zorgverbinding & Welzijn</p>
+                  <p class="card-text fs-6">
+                    "Met mijn achtergrond in de zorg help ik bezoekers eenvoudig de weg te vinden naar passende zorgverleners en hulpmiddelen."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Callout Box -->
+          <div class="p-4 rounded-3" style="background-color: #EBF2FA; border-left: 6px solid var(--brand-primary);">
+            <p class="fs-5 mb-0">
+              <i class="fas fa-envelope-open-text me-2" style="color: var(--brand-primary);"></i>
+              Wil je ons helpen met het verder uitbouwen van het Parkinson Café? Neem contact met ons op via 
+              <a href="mailto:info@parkinsondronten.nl" class="accessible-link">info@parkinsondronten.nl</a>.
+            </p>
+          </div>
+
+        </div>
+      </section>
+    </section>
+
+    <!-- 3. VOOR PATIËNTEN EN NAASTEN TAB -->
+    <section id="tab-patienten" class="tab-content d-none">
+      <section class="py-4" style="background-color: #EBF2FA; border-bottom: 1px solid var(--border-color);">
+        <div class="container py-3">
+          <h1 class="mb-2">Voor patiënten en naasten</h1>
+          <p class="fs-3 mb-0" style="color: var(--brand-accent); font-weight: 600;">Informatie, steun en ontmoeting in de gemeente Dronten</p>
+        </div>
+      </section>
+
+      <section class="py-5">
+        <div class="container">
+          <!-- Quote -->
+          <div class="quote-box">
+            <i class="fas fa-quote-left me-3"></i>
+            Je staat er niet alleen voor
+          </div>
+
+          <div class="bg-white p-4 p-md-5 rounded-3 border border-2">
+            <p class="fs-5 mb-5">
+              De ziekte van Parkinson brengt veel onzekerheden met zich mee. Of het nu gaat om mobiliteit, freezing, praten of de mentale impact op je relatie: het helpt om te praten met mensen die precies begrijpen wat je doormaakt.
+            </p>
+
+            <h2 class="h2 mb-4">Wat we bieden / willen realiseren:</h2>
+
+            <div class="row g-4">
+              
+              <div class="col-md-6">
+                <div class="p-4 rounded-3 h-100 border" style="background-color: #F9F9FB;">
+                  <h3 class="h4 mb-3" style="color: var(--brand-primary);">
+                    <i class="fas fa-coffee me-2"></i> Koffiemomenten & Lotgenotencontact
+                  </h3>
+                  <p class="mb-0">Ontmoet gelijkgestemden in een ongedwongen sfeer in Dronten, Swifterbant of Biddinghuizen.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="p-4 rounded-3 h-100 border" style="background-color: #F9F9FB;">
+                  <h3 class="h4 mb-3" style="color: var(--brand-primary);">
+                    <i class="fas fa-heart me-2"></i> Ondersteuning voor Mantelzorgers
+                  </h3>
+                  <p class="mb-0">Parkinson heb je niet alleen. Wij bieden een luisterend oor en zoeken naar mogelijkheden voor respijtzorg, zodat je als naaste de batterij kunt opladen.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="p-4 rounded-3 h-100 border" style="background-color: #F9F9FB;">
+                  <h3 class="h4 mb-3" style="color: var(--brand-primary);">
+                    <i class="fas fa-running me-2"></i> Beweeg- & Balansprogramma's
+                  </h3>
+                  <p class="mb-0">Informatie over lokaal aanbod zoals valpreventie, Parkinson-boksen en specifieke fysiotherapie in de buurt.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="p-4 rounded-3 h-100 border" style="background-color: #F9F9FB;">
+                  <h3 class="h4 mb-3" style="color: var(--brand-primary);">
+                    <i class="fas fa-compass me-2"></i> Wegwijzer in de Zorg
+                  </h3>
+                  <p class="mb-0">Hulp bij het vinden van de juiste route binnen het Wmo-loket, de Dronter Doeners, wijkverpleging en de juiste hulpmiddelen.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 4. INFORMATIE EN MEDIA TAB -->
+    <section id="tab-informatie" class="tab-content d-none">
+      <section class="py-4" style="background-color: #EBF2FA; border-bottom: 1px solid var(--border-color);">
+        <div class="container py-3">
+          <h1 class="mb-2">Informatie en media</h1>
+          <p class="fs-3 mb-0" style="color: var(--brand-accent); font-weight: 600;">Handige links, regionale initiatieven en verslagen</p>
+        </div>
+      </section>
+
+      <section class="py-5">
+        <div class="container">
+          
+          <div class="row g-4">
+            
+            <!-- Initiatieven in Dronten -->
+            <div class="col-md-6">
+              <div class="bg-white p-4 p-md-5 rounded-3 border border-2 h-100">
+                <h2 id="initiatieven-in-dronten" class="h3 mb-4">
+                  <i class="fas fa-map-marked-alt me-2"></i> Initiatieven in Dronten & Regio
+                </h2>
+                <ul class="list-unstyled mb-0">
+                  <li class="py-2 border-bottom">
+                    <a href="https://www.facebook.com/profile.php?id=100087564831980" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fab fa-facebook me-2"></i> Parkinson Boksen Dronten
+                    </a>
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <a href="https://www.facebook.com/parkinson.ontmoeting.elburg" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fab fa-facebook me-2"></i> Parkinson Café Elburg
+                    </a>
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <a href="https://parkinson-nop.nl/Laatste-nieuws/" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fas fa-globe me-2"></i> Parkinson Café Emmeloord en omgeving
+                    </a>
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <a href="https://www.facebook.com/parkinsoncafeemmeloord" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fab fa-facebook me-2"></i> Parkinson Café Emmeloord op Facebook
+                    </a>
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <a href="https://odensehuisdronten.nl" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fas fa-home me-2"></i> Odensehuis Dronten
+                    </a>
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <a href="https://platformseniorendronten.nl/" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fas fa-users me-2"></i> Platform Senioren Dronten
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Landelijke Informatie -->
+            <div class="col-md-6">
+              <div class="bg-white p-4 p-md-5 rounded-3 border border-2 h-100">
+                <h2 id="informatie-landelijk" class="h3 mb-4">
+                  <i class="fas fa-info-circle me-2"></i> Informatie Landelijk
+                </h2>
+                <ul class="list-unstyled mb-0">
+                  <li class="py-3 border-bottom">
+                    <a href="https://www.parkinson-vereniging.nl/ervaringsdeskundige?weblog-authorName=riasnoek" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fas fa-external-link-alt me-2"></i> Parkinson Vereniging
+                    </a>
+                    <p class="fs-6 mt-1 mb-0">Ervaringsverhalen, medische informatie en de landelijke vereniging.</p>
+                  </li>
+                  <li class="py-3 border-bottom">
+                    <a href="http://parkinson.nl" target="_blank" rel="noopener" class="accessible-link fs-5">
+                      <i class="fas fa-external-link-alt me-2"></i> Parkinson.nl
+                    </a>
+                    <p class="fs-6 mt-1 mb-0">Het centrale landelijke platform voor nieuws, onderzoek en advies over Parkinson.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Verslagen van het Parkinson Café -->
+            <div class="col-12 mt-4">
+              <div class="bg-white p-4 p-md-5 rounded-3 border border-2">
+                <h2 id="verslagen-van-het-parkinson-café" class="h3 mb-4">
+                  <i class="fas fa-file-alt me-2"></i> Verslagen van het Parkinson Café
+                </h2>
+                <p class="fs-5 mb-4">Hieronder vindt u de verslagen van onze recente bijeenkomsten en activiteiten:</p>
+
+                <div class="row g-4">
+                  <div class="col-md-4">
+                    <div class="p-4 rounded-3 border h-100" style="background-color: #F9F9FB;">
+                      <span class="badge bg-primary mb-2">Bijeenkomst</span>
+                      <h3 class="h5 mb-2">Verslag Bijeenkomst Oktober</h3>
+                      <p class="fs-6 mb-3">Thema: 'Bewegen en Balans bij Parkinson' met gastspreker fysiotherapie.</p>
+                      <button class="btn btn-sm btn-brand-outlined" onclick="showReportMessage('Verslag Oktober')">
+                        <i class="fas fa-download me-1"></i> Bekijk Verslag
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="p-4 rounded-3 border h-100" style="background-color: #F9F9FB;">
+                      <span class="badge bg-primary mb-2">Bijeenkomst</span>
+                      <h3 class="h5 mb-2">Verslag Bijeenkomst September</h3>
+                      <p class="fs-6 mb-3">Thema: 'Voeding en medicatie-inname' in samenwerking met de apotheek.</p>
+                      <button class="btn btn-sm btn-brand-outlined" onclick="showReportMessage('Verslag September')">
+                        <i class="fas fa-download me-1"></i> Bekijk Verslag
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="p-4 rounded-3 border h-100" style="background-color: #F9F9FB;">
+                      <span class="badge bg-primary mb-2">Oprichting</span>
+                      <h3 class="h5 mb-2">Verslag Start Parkinson Café</h3>
+                      <p class="fs-6 mb-3">Feestelijke opening in samenwerking met Platform Senioren Dronten.</p>
+                      <button class="btn btn-sm btn-brand-outlined" onclick="showReportMessage('Verslag Start')">
+                        <i class="fas fa-download me-1"></i> Bekijk Verslag
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- MODAL: CONTACT / PIONIER AANMELDEN -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: var(--brand-primary);">
+          <h2 class="modal-title h5 text-white fw-bold" id="contactModalLabel">Aanmelden als Pionier / Vrijwilliger</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Sluiten"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div id="modalAlertBox" class="alert alert-success d-none mb-4" role="alert">
+            Hartelijk dank voor uw aanmelding! Wij nemen zo snel mogelijk contact met u op.
+          </div>
+          <form id="pioneerForm" onsubmit="handleFormSubmit(event)">
+            <div class="mb-3">
+              <label class="form-label fs-5" for="pioneerName">Uw Naam *</label>
+              <input class="form-control form-control-accessible" type="text" id="pioneerName" required placeholder="bijv. Maria Jansen">
+            </div>
+            <div class="mb-3">
+              <label class="form-label fs-5" for="pioneerEmail">E-mailadres *</label>
+              <input class="form-control form-control-accessible" type="email" id="pioneerEmail" required placeholder="bijv. naam@domein.nl">
+            </div>
+            <div class="mb-3">
+              <label class="form-label fs-5" for="pioneerPhone">Telefoonnummer</label>
+              <input class="form-control form-control-accessible" type="tel" id="pioneerPhone" placeholder="06 12345678">
+            </div>
+            <div class="mb-3">
+              <label class="form-label fs-5" for="pioneerMotivation">Hoe wilt u bijdragen?</label>
+              <textarea class="form-control form-control-accessible" id="pioneerMotivation" rows="3" placeholder="Vertel kort wat u zou willen doen..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-brand w-100 mt-2">
+              <i class="fas fa-paper-plane me-2"></i> Verzenden
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DONATIE INFORMATIE -->
+  <div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: var(--brand-primary);">
+          <h2 class="modal-title h5 text-white fw-bold" id="donateModalLabel">Doneer een bijdrage</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Sluiten"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="fs-5 mb-4">
+            Met uw bijdrage kunnen wij boeiende sprekers uitnodigen, bijeenkomsten organiseren en de koffie en thee verzorgen voor onze bezoekers.
+          </p>
+          <div class="p-3 rounded-3" style="background-color: #EBF2FA; border-left: 4px solid var(--brand-primary);">
+            <p class="fs-5 mb-2"><strong>Bankgegevens:</strong></p>
+            <p class="fs-5 mb-1"><strong>IBAN:</strong> NL 99 RABO 99999999</p>
+            <p class="fs-5 mb-1"><strong>t.n.v.:</strong> Stichting Parkinson Café Dronten</p>
+            <p class="fs-5 mb-1"><strong>RSIN:</strong> 868324073</p>
+            <p class="fs-5 mb-0"><strong>KvK:</strong> 9999999</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-brand" data-bs-dismiss="modal">Sluiten</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER SECTION (PRESENT ON ALL PAGES) -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Contact & Openingstijden -->
+        <div class="col-lg-4">
+          <h3 class="h4 mb-3">Contact & Adres</h3>
+          <p class="mb-2">
+            <i class="fas fa-phone me-2" style="color: #93C5FD;"></i> 
+            <strong>Secretariaat:</strong> 06 12345678
+          </p>
+          <p class="mb-2">
+            <i class="fas fa-envelope me-2" style="color: #93C5FD;"></i> 
+            <strong>E-mail:</strong> <a href="mailto:info@parkinsondronten.nl">info@parkinsondronten.nl</a>
+          </p>
+          <p class="mt-4 mb-1"><strong>Adres & Openingstijden:</strong></p>
+          <p class="fs-6 mb-0">
+            Gemeente Dronten (wisselende locaties in Dronten, Swifterbant en Biddinghuizen).<br>
+            Elke maandag- of dinsdagmiddag van de maand (zie programma).
+          </p>
+        </div>
+
+        <!-- Nieuwsbrief Formulier -->
+        <div class="col-lg-4">
+          <h3 class="h4 mb-3">Nieuwsbrief</h3>
+          <p class="mb-3 fs-6">Abonneer u op onze nieuwsbrief om op de hoogte te blijven van bijeenkomsten en nieuws.</p>
+          <div id="newsletterSuccess" class="alert alert-success d-none p-3 fs-6" role="alert">
+            U bent succesvol aangemeld voor onze nieuwsbrief!
+          </div>
+          <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+            <div class="mb-3">
+              <label class="form-label fs-6" for="newsletterEmail">Uw E-mailadres</label>
+              <div class="input-group">
+                <span class="input-group-text" style="background-color: #FFFFFF; border-color: #4B5563;">
+                  <i class="fas fa-envelope" style="color: #4B5563;"></i>
+                </span>
+                <input class="form-control form-control-accessible" type="email" id="newsletterEmail" required placeholder="bijv. uw@email.nl">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-brand w-100">
+              <i class="fas fa-paper-plane me-2"></i> Abonneer
+            </button>
+          </form>
+        </div>
+
+        <!-- ANBI & Organisatie Gegevens -->
+        <div class="col-lg-4">
+          <h3 class="h4 mb-3">Organisatie Gegevens</h3>
+          <p class="fs-6 mb-1"><strong>Stichting Parkinson Café Dronten</strong></p>
+          <p class="fs-6 mb-1">In samenwerking met Platform Senioren Dronten (PSD)</p>
+          <p class="fs-6 mb-1"><strong>RSIN:</strong> 868324073</p>
+          <p class="fs-6 mb-1"><strong>Bank:</strong> NL 99 RABO 99999999</p>
+          <p class="fs-6 mb-1"><strong>t.n.v.:</strong> Stichting Parkinson Café Dronten</p>
+          <p class="fs-6 mb-1"><strong>KvK:</strong> 9999999</p>
+        </div>
+
+      </div>
+
+      <hr class="my-4" style="border-top: 1px solid #374151; opacity: 1;">
+
+      <div class="text-center fs-6">
+        <p class="mb-0">&copy; Parkinson Café Dronten. Zonder winstoogmerk gedreven door vrijwilligers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <!-- MINIMAL JAVASCRIPT FOR NAVIGATION, MODALS & FORM INTERACTION -->
+  <script>
+    // Tab switching function
+    function switchTab(tabId) {
+      // Hide all tabs
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.add('d-none'));
+
+      // Deactivate all nav links
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      // Show target tab
+      const targetTab = document.getElementById('tab-' + tabId);
+      if (targetTab) {
+        targetTab.classList.remove('d-none');
+      }
+
+      // Activate corresponding navbar item
+      const activeNav = document.getElementById('nav-' + tabId);
+      if (activeNav) {
+        activeNav.classList.add('active');
+      }
+
+      // Close mobile navbar collapse if open
+      const navbarCollapse = document.getElementById('navbarMain');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+        if (bsCollapse) bsCollapse.hide();
+      }
+
+      // Scroll smoothly to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal helper instances
+    let contactModalInstance;
+    let donateModalInstance;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      contactModalInstance = new bootstrap.Modal(document.getElementById('contactModal'));
+      donateModalInstance = new bootstrap.Modal(document.getElementById('donateModal'));
+    });
+
+    function openContactModal() {
+      if (contactModalInstance) contactModalInstance.show();
+    }
+
+    function openDonateModal() {
+      if (donateModalInstance) donateModalInstance.show();
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const alertBox = document.getElementById('modalAlertBox');
+      alertBox.classList.remove('d-none');
+      document.getElementById('pioneerForm').reset();
+      setTimeout(() => {
+        alertBox.classList.add('d-none');
+        if (contactModalInstance) contactModalInstance.hide();
+      }, 3000);
+    }
+
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      const successMsg = document.getElementById('newsletterSuccess');
+      successMsg.classList.remove('d-none');
+      document.getElementById('newsletterForm').reset();
+      setTimeout(() => {
+        successMsg.classList.add('d-none');
+      }, 4000);
+    }
+
+    function showReportMessage(title) {
+      const msg = document.createElement('div');
+      msg.className = 'alert alert-info shadow-lg';
+      msg.style.position = 'fixed';
+      msg.style.bottom = '20px';
+      msg.style.right = '20px';
+      msg.style.zIndex = '9999';
+      msg.style.padding = '1.25rem';
+      msg.style.fontSize = '1.1rem';
+      msg.innerHTML = '<i class="fas fa-info-circle me-2"></i> ' + title + ' wordt geladen...';
+      document.body.appendChild(msg);
+
+      setTimeout(() => {
+        msg.remove();
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
